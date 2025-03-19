@@ -10,7 +10,7 @@ async function addtask(req, res) {
         return res.status(201).json({ msg: "Task created successfully", task: createtask });
 
     } catch (error) {        
-        return res.status(500).json({ error: "Internal server error" });
+        return res.status(500).json({ error: "Internal server error " });
     }
 }
 
