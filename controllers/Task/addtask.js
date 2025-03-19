@@ -1,17 +1,34 @@
 const Task = require("../../models/Task.js");
 
 async function addtask(req, res) {
-  console.log("route hitts");
   try {
-    const { title, description, status } = req.body;
-    if (!title || !description || !status) {
-      return res.status(400).json({ msg: "All fields are required" });
+    const { title, description, status, deadline, userId } = req.body;
+
+    // Validate required fields
+    if (!title || !description || !deadline) {
+      return res
+        .status(400)
+        .json({ msg: "Title, description, and deadline are required" });
     }
-    const createtask = await Task.create({ title, description, status });
-    return res
-      .status(201)
-      .json({ msg: "Task created successfully", task: createtask });
+
+    // Create a new task
+    const newTask = new Task({
+      title,
+      description,
+      status: status || "Pending", 
+      deadline,
+      userId,
+    });
+
+    // Save to database
+    await newTask.save();
+
+    return res.status(201).json({
+      msg: "Task created successfully",
+      task: newTask,
+    });
   } catch (error) {
+    console.error("Error adding task:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 }
