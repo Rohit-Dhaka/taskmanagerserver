@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 const morgan = require("morgan");
 const ConnectDb = require("./db/Connect.js");
 const routes = require("./routes/index.js");
+
 //Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
