@@ -4,14 +4,12 @@ async function addtask(req, res) {
   try {
     const { title, description, status, deadline, userId } = req.body;
 
-    // Validate required fields
     if (!title || !description || !deadline) {
       return res
         .status(400)
         .json({ msg: "Title, description, and deadline are required" });
     }
 
-    // Create a new task
     const newTask = new Task({
       title,
       description,
