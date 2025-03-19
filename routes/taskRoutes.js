@@ -1,10 +1,8 @@
-const express = require('express')
-const taskRoutes = express.Router()
-const {addtask} = require('../controllers/Task/index.js')
+const express = require("express");
+const taskRoutes = express.Router();
+const { addtask } = require("../controllers/Task/index.js");
 
 
-taskRoutes.post("/addtask", addtask)
+taskRoutes.post("/addtask", addtask);
 
-
-
-module.exports = taskRoutes
+module.exports = taskRoutes;
