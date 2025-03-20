@@ -1,3 +1,3 @@
 const {addtask} = require('./addtask.js')
-
-module.exports ={addtask}
+const {getTasks} = require('./gettask.js')
+module.exports ={addtask ,getTasks}
