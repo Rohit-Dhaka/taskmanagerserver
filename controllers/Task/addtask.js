@@ -1,8 +1,9 @@
 const Task = require("../../models/Task.js");
 
-async function addtask(req, res) {  
+async function addtask(req, res) {
   try {
-    const { title, description, status, deadline, userId } = req.body;
+    const { title, description, status, deadline } = req.body;
+    const userID = req.user._id;
     if (!title || !description || !deadline) {
       return res
         .status(400)
@@ -11,9 +12,9 @@ async function addtask(req, res) {
     const newTask = new Task({
       title,
       description,
-      status: status || "Pending", 
+      status: status || "Pending",
       deadline,
-      userId,
+      user: userID,
     });
 
     // Save to database
